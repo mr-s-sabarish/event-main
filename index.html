@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGO</title>
+
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Aos Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- swiper js cdn link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Tailwind Css  -->
+  <link rel="stylesheet" href="./output.css" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+    body {
+      font-family: "Josefin Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Hamburger animation */
+    .hamburger span {
+      display: block;
+      width: 1.5rem;
+      height: 0.125rem;
+      margin: 0.4rem auto;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: currentColor;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Mobile menu slide + fade */
+    .mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-10px);
+      overflow: hidden;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      max-height: 500px;
+      /* enough for nav links */
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="antialiased bg-black dark:bg-gray-950 text-white dark:text-slate-100">
+  <!-- Navbar  -->
+
+  <header class="fixed top-0 z-[500] border-b border-white/20 dark:border-slate-800 backdrop-blur-2xl w-full">
+    <div class=" mx-auto flex items-center justify-between p-4">
+      <!-- Logo -->
+      <a class="" href="./index.html"><img class="h-10 object-cover" src="./assets/Logo.png" alt="logo" /></a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-2 md:space-x-3 lg:space-x-5 text-sm font-medium">
+        <!-- Home with Dropdown -->
+        <div class="relative">
+          <!-- Parent Button -->
+          <button id="homeToggle"
+            class="relative text-white hover:text-violet-800 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-violet-800 after:transition-all after:duration-300 hover:after:w-full">
+            Home <i class="fa-solid fa-caret-down"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <ul id="homeMenu" class="absolute hidden bg-slate-900 dark:bg-slate-950 shadow-lg mt-2 rounded w-40">
+            <!-- <li>
+                <a
+                  href="./index.html"
+                  class="block px-4 py-2 hover:bg-violet-50 hover:text-violet-800"
+                >
+                  Home 1
+                </a>
+              </li> -->
+
+            <!-- Home 2 -->
+            <li>
+              <a href="" class="block px-4 py-2 text-white hover:bg-violet-50 hover:text-violet-800 tr">
+                Home 2
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- About Us -->
+        <a href="#"
+          class="relative text-white hover:text-violet-800 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-violet-800 after:transition-all after:duration-300 hover:after:w-full">About
+          Us</a>
+
+        <!-- Services -->
+        <a href="#"
+          class="relative text-white hover:text-violet-800 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-violet-800 after:transition-all after:duration-300 hover:after:w-full">Services</a>
+        <!-- Blogs -->
+        <a href="#"
+          class="relative text-white hover:text-violet-800 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-violet-800 after:transition-all after:duration-300 hover:after:w-full">Blogs</a>
+        <!-- Contact -->
+        <a href="#"
+          class="relative text-white hover:text-violet-800 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-violet-800 after:transition-all after:duration-300 hover:after:w-full">Contact</a>
+        <!-- Dashboard -->
+        <a href="#"
+          class="relative text-white hover:text-violet-800 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-violet-800 after:transition-all after:duration-300 hover:after:w-full">Dashboard</a>
+      </nav>
+
+      <div class="hidden lg:flex text-sm gap-4 font-medium">
+        <a class="flex items-center gap-2 px-4 py-2 border-2 border-violet-500 rounded-3xl text-sm transform hover:scale-95 transition duration-200 ease-out"
+          href="">
+          Book Now
+        </a>
+        <a class="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-[#7704c4] to-[#6701af] rounded-3xl text-sm transform hover:scale-95 transition duration-200 ease-out"
+          href=""><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+          Login</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="hamburger cursor-pointer lg:hidden focus:outline-none" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu"
+      class="mobile-menu lg:hidden dark:bg-slate-950 border-t border-slate-200/10 dark:border-slate-800 shadow-md">
+      <ul class="flex flex-col space-y-4 p-4 text-sm font-medium">
+        <!-- Home dropDown  -->
+        <div class="relative">
+          <button id="mobileToggle"
+            class="flex items-center gap-1 w-full text-left hover:text-violet-800 transition-colors lg:hidden">
+            Home <i class="fa-solid fa-caret-down"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <ul id="mobileLink" class="hidden bg-slate-900 dark:bg-slate-950 mt-2 rounded w-full md:absolute">
+            <!-- <li>
+                <a
+                  href=""
+                  class="block px-2 py-2 hover:bg-violet-50 hover:text-violet-800"
+                >
+                  Home 1
+                </a>
+              </li> -->
+            <li class=""></li>
+            <li>
+              <a href="" class="block px-2 py-2 hover:bg-violet-50 hover:text-violet-800">
+                Home 2
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- About Us -->
+        <li>
+          <a href="" class="nav-link block hover:text-violet-800 transition-colors">About Us</a>
+        </li>
+        <!-- Services -->
+        <li>
+          <a href="" class="nav-link block hover:text-violet-800 transition-colors">Services</a>
+        </li>
+        <!-- Blogs -->
+        <li>
+          <a href="" class="nav-link block hover:text-violet-800 transition-colors">Events</a>
+        </li>
+        <!-- Contact -->
+        <li>
+          <a href="" class="nav-link block hover:text-violet-800 transition-colors">Contact</a>
+        </li>
+        <!-- Dashboard -->
+        <!-- <li>
+            <a
+              href=""
+              class="nav-link block hover:text-violet-800 transition-colors"
+              >Dashboard</a
+            >
+          </li> -->
+        <li>
+          <a href="" class="nav-link text-violet-500 block hover:text-violet-800 transition-colors">Book Now</a>
+        </li>
+        <li>
+          <a href="" class="flex items-center gap-2 nav-link hover:text-violet-800 transition-colors"><svg
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            Login</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Dropdown script  -->
+    <script>
+      const homeToggle = document.getElementById("homeToggle");
+      const homeMenu = document.getElementById("homeMenu");
+
+      homeToggle.addEventListener("click", () => {
+        homeMenu.classList.toggle("hidden");
+      });
+
+      const mobileToggle = document.getElementById("mobileToggle");
+      const mobileLink = document.getElementById("mobileLink");
+
+      // Home dropdown toggle (mobile only)
+      mobileToggle.addEventListener("click", () => {
+        mobileLink.classList.toggle("hidden");
+      });
+
+      // Optional: close menu if clicked outside
+      window.addEventListener("click", (e) => {
+        if (!homeToggle.contains(e.target) && !homeMenu.contains(e.target)) {
+          homeMenu.classList.add("hidden");
+        }
+      });
+    </script>
+  </header>
+
+  <section id="home" class="relative xl:h-screen w-full  bg-black text-white overflow-x-hidden">
+
+    <div class="mt-20 p-6  shadow-lg text-center z-10 relative mx-6">
+      <h2 class="text-2xl font-semibold text-white mb-4">Upcoming Event</h2>
+
+      <!-- Timer -->
+      <div class="flex justify-center gap-4 text-white text-xl font-bold">
+        <div class="flex flex-col items-center">
+          <span id="days">00</span>
+          <span class="text-sm font-normal">Days</span>
+        </div>
+        <span>:</span>
+        <div class="flex flex-col items-center">
+          <span id="hours">00</span>
+          <span class="text-sm font-normal">Hours</span>
+        </div>
+        <span>:</span>
+        <div class="flex flex-col items-center">
+          <span id="minutes">00</span>
+          <span class="text-sm font-normal">Minutes</span>
+        </div>
+        <span>:</span>
+        <div class="flex flex-col items-center">
+          <span id="seconds">00</span>
+          <span class="text-sm font-normal">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Set the date of the event
+      const eventDate = new Date("2025-10-01T00:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        if (distance < 0) {
+          document.getElementById("days").textContent = "00";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days.toString().padStart(2, '0');
+        document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+      }
+
+      // Update every second
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+
+    <!-- Hero Background -->
+    <div class="absolute inset-0">
+      <img src="./assets/home-bg2.jpg" alt="Hero Background" class="w-full h-full object-cover opacity-70">
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <div class="mt-8 relative z-10 p-6 w-full flex flex-col justify-center gap-6 ">
+
+      <!-- Left Content -->
+      <div class=" space-y-6 mx-auto md:text-center">
+        <h1 class="max-w-4xl mx-auto text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+          Where Ideas <span class="text-violet-800">Meet Execution</span> Solutions Available!
+        </h1>
+        <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+          Seamless conference & event management that transforms your vision
+          into reality. From planning to execution, we make your events
+          unforgettable.
+        </p>
+
+
+        <div class="flex items-center md:justify-center gap-6 mt-4">
+          <a href="#"
+            class="relative px-6 py-3 font-medium text-white bg-violet-700 rounded-full shadow-lg hover:bg-violet-800 transition-colors duration-300">
+            Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class=" text-white py-20 relative overflow-hidden">
+  
+
+  <div class="mx-auto px-6 grid xl:grid-cols-2 gap-12 items-center justify-center relative z-10">
+    
+    <!-- Main Content -->
+    <div class=" space-y-8">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-600">Why US?</h2>
+      <p class="text-gray-300 text-lg lg:text-xl leading-relaxed">
+        Experience a transformative event filled with expert sessions, interactive workshops, and unmatched networking opportunities. Elevate your skills and connect with like-minded professionals.
+      </p>
+
+      <!-- Feature Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+          <h3 class="text-violet-400 font-bold text-lg mb-2">Workshops</h3>
+          <p class="text-gray-200 text-sm">Hands-on sessions with industry leaders to boost your skills.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+          <h3 class="text-violet-400 font-bold text-lg mb-2">Networking</h3>
+          <p class="text-gray-200 text-sm">Meet and connect with professionals and peers across industries.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+          <h3 class="text-violet-400 font-bold text-lg mb-2">Giveaways</h3>
+          <p class="text-gray-200 text-sm">Exclusive event goodies, certificates, and exciting rewards.</p>
+        </div>
+      </div>
+
+      <button class="mt-8 px-8 py-3 bg-violet-700 rounded-xl font-semibold shadow-lg hover:bg-violet-800 transition-all duration-300">
+        Register Now
+      </button>
+    </div>
+
+    <!-- Side Image / Illustration -->
+    <div class=" flex justify-center">
+      <div class="relative w-full">
+        <img src="./assets/home-bg3.jpg" alt="Event Illustration" class="rounded-3xl shadow-2xl transform transition-transform duration-500 hover:scale-105 w-full h-full object-cover">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <section class=" overflow-x-hidden">
+    <!-- Featured Artists / Horizontal Scroll -->
+    <div class=" w-full px-6 ">
+      <div class="flex flex-wrap shrink-0 justify-around items-center gap-4">
+        <div class="bg-gray-800 rounded-xl p-4 flex flex-col items-center flex-shrink-0 w-full sm:w-56 text-center ">
+          <img src="./assets/home1.jpg" class="w-32 h-32 object-cover rounded-full mb-2" alt="Artist 1">
+          <p class="font-semibold">Renee Robertson</p>
+          <p class="text-gray-400 text-sm">Musical Merriments</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-4 flex flex-col items-center flex-shrink-0 w-full sm:w-56 text-center">
+          <img src="./assets/home2.jpg" class="w-32 h-32 object-cover rounded-full mb-2" alt="Artist 2">
+          <p class="font-semibold">Leslie Alexander</p>
+          <p class="text-gray-400 text-sm">Musical Merriments</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-4 flex flex-col items-center flex-shrink-0 w-full sm:w-56 text-center">
+          <img src="./assets/home3.jpg" class="w-32 h-32 object-cover rounded-full mb-2" alt="Artist 3">
+          <p class="font-semibold">Marvin McKinney</p>
+          <p class="text-gray-400 text-sm">Symphony Shindig</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-4 flex flex-col items-center flex-shrink-0 w-full sm:w-56 text-center">
+          <img src="./assets/home4.jpg" class="w-32 h-32 object-cover rounded-full mb-2" alt="Artist 4">
+          <p class="font-semibold">Courtney Henry</p>
+          <p class="text-gray-400 text-sm">Dance Maze</p>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-4 flex flex-col items-center flex-shrink-0 w-full sm:w-56 text-center">
+          <img src="./assets/home5.jpg" class="w-32 h-32 rounded-full object-cover mb-2" alt="Artist 5">
+          <p class="font-semibold">Darrell Steward</p>
+          <p class="text-gray-400 text-sm">Indigo Music</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Aos Animation  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    AOS.init({
+      duration: 800,
+      // delay: 200, // default delay for all elements
+      once: false,
+      mirror: true,
+    });
+  </script>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const links = mobileMenu.querySelectorAll(".nav-link");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      mobileMenu.classList.toggle("open");
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        mobileMenu.classList.remove("open");
+      });
+    });
+  </script>
+</body>
+
+</html>

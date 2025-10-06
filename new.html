@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<section class="relative bg-black text-gray-200 py-28 overflow-hidden" id="services">
+  <!-- Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute -top-40 -left-32 w-[30rem] h-[30rem] bg-purple-600/20 blur-[120px] rounded-full"></div>
+    <div class="absolute top-80 -right-32 w-[30rem] h-[30rem] bg-pink-600/20 blur-[120px] rounded-full"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- Section Intro -->
+    <div class="text-center mb-20">
+      <span class="text-sm tracking-widest uppercase text-purple-400 font-semibold">Our Services</span>
+      <h2 class="mt-4 text-5xl md:text-6xl font-extrabold text-white leading-tight">
+        Comprehensive Event Solutions
+      </h2>
+      <p class="mt-6 text-lg text-gray-400 max-w-3xl mx-auto">
+        From corporate summits to private celebrations, we provide full-spectrum event management services designed to impress and inspire.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+      
+      <!-- Card 1 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl border border-gray-800 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-8 transition hover:scale-[1.02]">
+        <div class="absolute inset-0 z-0">
+          <img src="https://source.unsplash.com/800x600/?corporate,event" class="object-cover w-full h-full opacity-70 group-hover:opacity-100 transition"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-white mb-3">Corporate Events</h3>
+          <p class="text-gray-300 mb-6">High-level conferences, product launches, and executive meetings.</p>
+          <button onclick="openModal('corporateModal')" class="px-6 py-3 rounded-full bg-purple-600 text-white hover:bg-purple-500 transition">Learn More</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl border border-gray-800 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-8 transition hover:scale-[1.02]">
+        <div class="absolute inset-0 z-0">
+          <img src="https://source.unsplash.com/800x600/?wedding,event" class="object-cover w-full h-full opacity-70 group-hover:opacity-100 transition"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-white mb-3">Luxury Weddings</h3>
+          <p class="text-gray-300 mb-6">Tailored weddings with elegance, creativity, and perfection.</p>
+          <button onclick="openModal('weddingModal')" class="px-6 py-3 rounded-full bg-pink-600 text-white hover:bg-pink-500 transition">Learn More</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl border border-gray-800 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-8 transition hover:scale-[1.02]">
+        <div class="absolute inset-0 z-0">
+          <img src="https://source.unsplash.com/800x600/?concert,music" class="object-cover w-full h-full opacity-70 group-hover:opacity-100 transition"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-white mb-3">Concerts & Festivals</h3>
+          <p class="text-gray-300 mb-6">Immersive live experiences with flawless logistics.</p>
+          <button onclick="openModal('concertModal')" class="px-6 py-3 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition">Learn More</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl border border-gray-800 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-8 transition hover:scale-[1.02]">
+        <div class="absolute inset-0 z-0">
+          <img src="https://source.unsplash.com/800x600/?party,celebration" class="object-cover w-full h-full opacity-70 group-hover:opacity-100 transition"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-white mb-3">Private Celebrations</h3>
+          <p class="text-gray-300 mb-6">Personalized birthdays, anniversaries, and family parties.</p>
+          <button onclick="openModal('partyModal')" class="px-6 py-3 rounded-full bg-green-600 text-white hover:bg-green-500 transition">Learn More</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl border border-gray-800 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-8 transition hover:scale-[1.02]">
+        <div class="absolute inset-0 z-0">
+          <img src="https://source.unsplash.com/800x600/?exhibition,event" class="object-cover w-full h-full opacity-70 group-hover:opacity-100 transition"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-white mb-3">Exhibitions & Trade Shows</h3>
+          <p class="text-gray-300 mb-6">Professional trade fairs and exhibitions with impact.</p>
+          <button onclick="openModal('expoModal')" class="px-6 py-3 rounded-full bg-yellow-600 text-white hover:bg-yellow-500 transition">Learn More</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl border border-gray-800 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-8 transition hover:scale-[1.02]">
+        <div class="absolute inset-0 z-0">
+          <img src="https://source.unsplash.com/800x600/?fashion,show" class="object-cover w-full h-full opacity-70 group-hover:opacity-100 transition"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-white mb-3">Fashion Shows</h3>
+          <p class="text-gray-300 mb-6">Stylish fashion runways and luxury showcases.</p>
+          <button onclick="openModal('fashionModal')" class="px-6 py-3 rounded-full bg-red-600 text-white hover:bg-red-500 transition">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POPUPS ================= -->
+<!-- Example Modal (Corporate) -->
+<div id="corporateModal" class="fixed inset-0 bg-black/70 backdrop-blur-lg hidden items-center justify-center z-50">
+  <div class="bg-zinc-900 rounded-3xl max-w-2xl w-full p-8 relative">
+    <button onclick="closeModal('corporateModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+    <h3 class="text-3xl font-bold text-white mb-4">Corporate Events</h3>
+    <p class="text-gray-300 mb-6">We specialize in conferences, product launches, and executive gatherings.</p>
+    <ul class="list-disc list-inside text-gray-400 mb-6 space-y-2">
+      <li>Venue & logistics planning</li>
+      <li>Stage & presentation design</li>
+      <li>Team coordination & guest handling</li>
+      <li>Hybrid & virtual event support</li>
+    </ul>
+    <div class="text-right">
+      <a href="#contact" class="px-6 py-3 rounded-full bg-purple-600 text-white hover:bg-purple-500 transition">Book Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- Repeat modals for weddings, concerts, etc. -->
+<div id="weddingModal" class="fixed inset-0 bg-black/70 backdrop-blur-lg hidden items-center justify-center z-50">
+  <div class="bg-zinc-900 rounded-3xl max-w-2xl w-full p-8 relative">
+    <button onclick="closeModal('weddingModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+    <h3 class="text-3xl font-bold text-white mb-4">Luxury Weddings</h3>
+    <p class="text-gray-300 mb-6">From intimate ceremonies to royal-style weddings, we make dreams come true.</p>
+    <ul class="list-disc list-inside text-gray-400 mb-6 space-y-2">
+      <li>Theme & décor planning</li>
+      <li>Venue transformation</li>
+      <li>Catering & hospitality</li>
+      <li>Guest experience design</li>
+    </ul>
+    <div class="text-right">
+      <a href="#contact" class="px-6 py-3 rounded-full bg-pink-600 text-white hover:bg-pink-500 transition">Book Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- More modals (concertModal, partyModal, expoModal, fashionModal) can follow same structure -->
+
+<!-- ================= JS ================= -->
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.remove("hidden");
+    document.getElementById(id).classList.add("flex");
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.add("hidden");
+    document.getElementById(id).classList.remove("flex");
+  }
+</script>
+
+<section class="relative bg-black text-gray-200 py-28" id="events">
+  <!-- Background Glow -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute -top-40 -left-32 w-[30rem] h-[30rem] bg-purple-600/20 blur-[120px] rounded-full"></div>
+    <div class="absolute top-80 -right-32 w-[30rem] h-[30rem] bg-blue-600/20 blur-[120px] rounded-full"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <span class="text-sm uppercase tracking-widest text-purple-400 font-semibold">Upcoming Events</span>
+      <h2 class="mt-4 text-5xl md:text-6xl font-extrabold text-white">What’s Happening Next</h2>
+      <p class="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
+        Discover the latest conferences, concerts, and celebrations lined up for the season.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative border-l border-gray-700">
+      
+      <!-- Event 1 -->
+      <div class="mb-16 ml-8 relative">
+        <div class="absolute -left-4 top-1.5 w-8 h-8 bg-purple-600 rounded-full border-4 border-black"></div>
+        <div class="bg-zinc-900 rounded-2xl p-6 shadow-lg hover:shadow-purple-500/20 transition">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-white">Global Business Summit 2025</h3>
+            <span class="text-sm text-purple-400 mt-2 md:mt-0">Nov 25, 2025 • New York</span>
+          </div>
+          <p class="mt-3 text-gray-400">An international gathering of industry leaders, CEOs, and innovators to discuss the future of business.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-gray-500 text-sm">Grand Hyatt Hotel</span>
+            <button onclick="openModal('event1')" class="px-5 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-500 transition">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="mb-16 ml-8 relative">
+        <div class="absolute -left-4 top-1.5 w-8 h-8 bg-pink-600 rounded-full border-4 border-black"></div>
+        <div class="bg-zinc-900 rounded-2xl p-6 shadow-lg hover:shadow-pink-500/20 transition">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-white">Winter Music Festival</h3>
+            <span class="text-sm text-pink-400 mt-2 md:mt-0">Dec 12, 2025 • Los Angeles</span>
+          </div>
+          <p class="mt-3 text-gray-400">A massive outdoor concert featuring top international DJs and bands under the winter lights.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-gray-500 text-sm">Central Park Grounds</span>
+            <button onclick="openModal('event2')" class="px-5 py-2 rounded-full bg-pink-600 text-white hover:bg-pink-500 transition">Get Tickets</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="mb-16 ml-8 relative">
+        <div class="absolute -left-4 top-1.5 w-8 h-8 bg-green-600 rounded-full border-4 border-black"></div>
+        <div class="bg-zinc-900 rounded-2xl p-6 shadow-lg hover:shadow-green-500/20 transition">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-white">Royal Wedding Gala</h3>
+            <span class="text-sm text-green-400 mt-2 md:mt-0">Jan 5, 2026 • Dubai</span>
+          </div>
+          <p class="mt-3 text-gray-400">An exclusive luxury wedding celebration with international guests, premium décor, and royal styling.</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-gray-500 text-sm">Ritz Carlton Hotel</span>
+            <button onclick="openModal('event3')" class="px-5 py-2 rounded-full bg-green-600 text-white hover:bg-green-500 transition">RSVP Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= EVENT POPUPS ================= -->
+<div id="event1" class="fixed inset-0 bg-black/70 backdrop-blur-lg hidden items-center justify-center z-50">
+  <div class="bg-zinc-900 rounded-3xl max-w-2xl w-full p-8 relative">
+    <button onclick="closeModal('event1')" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+    <h3 class="text-3xl font-bold text-white mb-4">Global Business Summit 2025</h3>
+    <p class="text-gray-300 mb-6">Engage with thought leaders and business giants as they discuss emerging trends, innovations, and opportunities shaping the global economy.</p>
+    <ul class="list-disc list-inside text-gray-400 mb-6 space-y-2">
+      <li>Over 50 speakers from Fortune 500 companies</li>
+      <li>Networking lounges & workshops</li>
+      <li>Exclusive gala dinner</li>
+    </ul>
+    <div class="text-right">
+      <a href="#register" class="px-6 py-3 rounded-full bg-purple-600 text-white hover:bg-purple-500 transition">Register Now</a>
+    </div>
+  </div>
+</div>
+
+<div id="event2" class="fixed inset-0 bg-black/70 backdrop-blur-lg hidden items-center justify-center z-50">
+  <div class="bg-zinc-900 rounded-3xl max-w-2xl w-full p-8 relative">
+    <button onclick="closeModal('event2')" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+    <h3 class="text-3xl font-bold text-white mb-4">Winter Music Festival</h3>
+    <p class="text-gray-300 mb-6">Dance to live music from world-famous DJs and bands across 3 stages with an unforgettable winter vibe.</p>
+    <ul class="list-disc list-inside text-gray-400 mb-6 space-y-2">
+      <li>3 Days • 30+ Artists</li>
+      <li>VIP zones and premium seating</li>
+      <li>Afterparties & meetups</li>
+    </ul>
+    <div class="text-right">
+      <a href="#tickets" class="px-6 py-3 rounded-full bg-pink-600 text-white hover:bg-pink-500 transition">Buy Tickets</a>
+    </div>
+  </div>
+</div>
+
+<div id="event3" class="fixed inset-0 bg-black/70 backdrop-blur-lg hidden items-center justify-center z-50">
+  <div class="bg-zinc-900 rounded-3xl max-w-2xl w-full p-8 relative">
+    <button onclick="closeModal('event3')" class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+    <h3 class="text-3xl font-bold text-white mb-4">Royal Wedding Gala</h3>
+    <p class="text-gray-300 mb-6">Step into luxury with this once-in-a-lifetime wedding event featuring breathtaking décor, royal hospitality, and international guests.</p>
+    <ul class="list-disc list-inside text-gray-400 mb-6 space-y-2">
+      <li>Luxury banquets & entertainment</li>
+      <li>Exclusive VIP access</li>
+      <li>Red carpet reception</li>
+    </ul>
+    <div class="text-right">
+      <a href="#rsvp" class="px-6 py-3 rounded-full bg-green-600 text-white hover:bg-green-500 transition">RSVP Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= JS ================= -->
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.remove("hidden");
+    document.getElementById(id).classList.add("flex");
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.add("hidden");
+    document.getElementById(id).classList.remove("flex");
+  }
+</script>
+
+
+
+</body>
+</html>
