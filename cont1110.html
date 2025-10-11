@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - EventHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@heroicons/vue@2.0.18/dist/outline.js"></script>
+</head>
+
+<body class="bg-black text-gray-200 font-sans flex items-center justify-center min-h-screen px-6 py-16">
+
+  <!-- Contact Section -->
+  <section class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    
+    <!-- Left: Form -->
+    <div class="bg-gray-900/70 backdrop-blur-md border border-gray-800 rounded-2xl p-8 shadow-lg">
+      <h2 class="text-3xl font-bold text-white mb-2">Get in Touch</h2>
+      <p class="text-gray-400 mb-8">Fill out the form and our team will get back to you within 24 hours.</p>
+
+      <form class="space-y-5">
+        <div>
+          <label class="block text-gray-400 mb-1">Full Name</label>
+          <input type="text" placeholder="John Doe"
+            class="w-full bg-gray-800 text-gray-200 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Email Address</label>
+          <input type="email" placeholder="you@example.com"
+            class="w-full bg-gray-800 text-gray-200 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Message</label>
+          <textarea rows="4" placeholder="Write your message..."
+            class="w-full bg-gray-800 text-gray-200 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"></textarea>
+        </div>
+        <button type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-all duration-200">
+          Send Message
+        </button>
+      </form>
+    </div>
+
+    <!-- Right: Contact Info -->
+    <div class="flex flex-col space-y-6">
+      <h3 class="text-2xl font-semibold text-white mb-2">Contact Information</h3>
+      <p class="text-gray-400 max-w-md">You can also reach out to us directly through the details below.</p>
+
+      <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex items-center gap-4 hover:bg-gray-800 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-.659 1.591L12 13.5 3.659 8.584A2.25 2.25 0 013 6.993V6.75" />
+        </svg>
+        <div>
+          <h4 class="text-white font-semibold">Email Us</h4>
+          <p class="text-gray-400">support@eventhub.com</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex items-center gap-4 hover:bg-gray-800 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a1.5 1.5 0 001.5-1.5v-2.264a.75.75 0 00-.685-.745l-3.423-.342a.75.75 0 00-.798.49l-.788 2.364a11.98 11.98 0 01-6.918-6.918l2.364-.788a.75.75 0 00.49-.798l-.342-3.423a.75.75 0 00-.745-.685H6.75a1.5 1.5 0 00-1.5 1.5V6.75z" />
+        </svg>
+        <div>
+          <h4 class="text-white font-semibold">Call Us</h4>
+          <p class="text-gray-400">+1 (555) 123-4567</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex items-center gap-4 hover:bg-gray-800 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M12 21c4.418 0 8-3.582 8-8 0-4.418-3.582-8-8-8S4 8.582 4 13c0 4.418 3.582 8 8 8z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M12 9v4l3 3" />
+        </svg>
+        <div>
+          <h4 class="text-white font-semibold">Office Location</h4>
+          <p class="text-gray-400">123 Event Street, New York</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
