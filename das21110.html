@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Management Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-black text-gray-200 font-sans min-h-screen">
+  <!-- Top Navbar -->
+  <header class="bg-gray-900 shadow-md flex justify-between items-center px-6 py-4">
+    <h1 class="text-2xl font-bold text-white">🎟 Event Management Dashboard</h1>
+    <div class="flex items-center gap-4">
+      <input type="text" placeholder="Search..." class="hidden sm:block bg-gray-800 text-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none">
+      <button class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition">🔔</button>
+      <img src="https://source.unsplash.com/40x40/?portrait" class="w-10 h-10 rounded-full border-2 border-gray-700" alt="Profile">
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 space-y-10">
+    <!-- Dashboard Stats -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-gray-400 mb-1">Total Events</h3>
+        <p class="text-3xl font-bold text-white">15</p>
+        <p class="text-sm text-gray-500 mt-2">+2 this month</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-gray-400 mb-1">Total Registrations</h3>
+        <p class="text-3xl font-bold text-white">524</p>
+        <p class="text-sm text-gray-500 mt-2">+38 this week</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-gray-400 mb-1">Upcoming Events</h3>
+        <p class="text-3xl font-bold text-white">6</p>
+        <p class="text-sm text-gray-500 mt-2">3 in next 10 days</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-gray-400 mb-1">Revenue</h3>
+        <p class="text-3xl font-bold text-green-400">$18,720</p>
+        <p class="text-sm text-gray-500 mt-2">+10% from last month</p>
+      </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Attendance Trend -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-white">Attendance Trend</h3>
+        <canvas id="attendanceChart"></canvas>
+      </div>
+
+      <!-- Revenue Chart -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-white">Revenue Growth</h3>
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Recent Events Table -->
+    <section>
+      <h3 class="text-2xl font-bold mb-4 text-white">Recent Events</h3>
+      <div class="overflow-x-auto rounded-lg shadow-lg">
+        <table class="w-full border-collapse text-left text-gray-300">
+          <thead class="bg-gray-800 text-gray-400 text-sm uppercase">
+            <tr>
+              <th class="px-4 py-3">Event Name</th>
+              <th class="px-4 py-3">Date</th>
+              <th class="px-4 py-3">Location</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3 text-center">Attendees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-gray-800 border-t border-gray-700 transition">
+              <td class="px-4 py-3">Tech Summit 2025</td>
+              <td class="px-4 py-3">Oct 15, 2025</td>
+              <td class="px-4 py-3">Innovation Park</td>
+              <td class="px-4 py-3 text-green-400">Active</td>
+              <td class="px-4 py-3 text-center">120</td>
+            </tr>
+            <tr class="hover:bg-gray-800 border-t border-gray-700 transition">
+              <td class="px-4 py-3">Art Workshop</td>
+              <td class="px-4 py-3">Nov 21, 2025</td>
+              <td class="px-4 py-3">Art Center</td>
+              <td class="px-4 py-3 text-yellow-400">Upcoming</td>
+              <td class="px-4 py-3 text-center">85</td>
+            </tr>
+            <tr class="hover:bg-gray-800 border-t border-gray-700 transition">
+              <td class="px-4 py-3">Music Festival</td>
+              <td class="px-4 py-3">Dec 20, 2025</td>
+              <td class="px-4 py-3">City Stadium</td>
+              <td class="px-4 py-3 text-green-400">Active</td>
+              <td class="px-4 py-3 text-center">200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ChartJS Scripts -->
+  <script>
+    // Attendance Chart
+    const ctx1 = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+        datasets: [{
+          label: 'Attendees',
+          data: [80, 120, 150, 170, 200, 250, 300, 280],
+          borderColor: '#3B82F6',
+          backgroundColor: 'rgba(59,130,246,0.3)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 5,
+          pointHoverRadius: 8
+        }]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#ddd' } } },
+        scales: {
+          x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
+          y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+        }
+      }
+    });
+
+    // Revenue Chart
+    const ctx2 = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+        datasets: [{
+          label: 'Revenue ($)',
+          data: [3200, 4500, 3800, 5200, 6000, 7500, 8200, 9000],
+          backgroundColor: '#10B981',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#ddd' } } },
+        scales: {
+          x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
+          y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

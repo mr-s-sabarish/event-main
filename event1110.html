@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Tabs with Images & FAQ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+
+  <section class="max-w-7xl mx-auto p-6">
+    <h2 class="text-4xl font-bold mb-8 text-center">Upcoming Events & FAQs</h2>
+
+    <!-- Tabs -->
+    <div class="flex justify-center mb-8 space-x-4">
+      <button class="tab px-5 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition" data-date="2025-10-15">Oct 15</button>
+      <button class="tab px-5 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition" data-date="2025-11-21">Nov 21</button>
+      <button class="tab px-5 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition" data-date="2025-12-20">Dec 20</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Event Cards -->
+      <div id="eventContainer" class="space-y-6">
+        <!-- Cards injected by JS -->
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        <h3 class="text-3xl font-bold mb-4">FAQs</h3>
+        <div class="space-y-2">
+          <div class="faq-item border-b border-gray-700 pb-2">
+            <button class="faq-question w-full text-left flex justify-between items-center py-2 text-lg">What is the registration process?<span>+</span></button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-gray-400">Click Register on the event card, fill the form, and submit to register.</div>
+          </div>
+          <div class="faq-item border-b border-gray-700 pb-2">
+            <button class="faq-question w-full text-left flex justify-between items-center py-2 text-lg">Are there any fees?<span>+</span></button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-gray-400">Most events are free; some premium workshops may require a small fee.</div>
+          </div>
+          <div class="faq-item border-b border-gray-700 pb-2">
+            <button class="faq-question w-full text-left flex justify-between items-center py-2 text-lg">Can I attend multiple events?<span>+</span></button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-gray-400">Yes, you can register for multiple events on different dates.</div>
+          </div>
+          <div class="faq-item border-b border-gray-700 pb-2">
+            <button class="faq-question w-full text-left flex justify-between items-center py-2 text-lg">Can I cancel my registration?<span>+</span></button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-gray-400">Yes, you can cancel anytime by contacting us via email.</div>
+          </div>
+          <div class="faq-item border-b border-gray-700 pb-2">
+            <button class="faq-question w-full text-left flex justify-between items-center py-2 text-lg">Will there be refreshments?<span>+</span></button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-gray-400">Light refreshments will be provided for in-person events.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-gray-900 rounded-xl p-6 w-11/12 max-w-md transform scale-95 transition-transform duration-300">
+      <h3 id="modalTitle" class="text-2xl font-bold mb-4">Register for Event</h3>
+      <form class="space-y-4">
+        <input type="text" placeholder="Name" class="w-full border rounded px-3 py-2 bg-gray-800 text-white border-gray-700">
+        <input type="email" placeholder="Email" class="w-full border rounded px-3 py-2 bg-gray-800 text-white border-gray-700">
+        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Submit</button>
+      </form>
+      <button class="mt-4 text-gray-400 hover:text-white" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+
+  
+
+  <script>
+    const events = [
+      { id: 'event1', title: 'Tech Conference', date: '2025-10-15', desc: 'Full-day conference on tech trends.', img: './assets/home3.jpg' },
+      { id: 'event2', title: 'Art Workshop', date: '2025-10-15', desc: 'Creative painting and sketching workshop.', img: 'https://source.unsplash.com/400x250/?art,painting' },
+      { id: 'event3', title: 'Music Festival', date: '2025-11-21', desc: 'Live performances from bands and artists.', img: 'https://source.unsplash.com/400x250/?music,concert' },
+      { id: 'event4', title: 'Photography Seminar', date: '2025-11-21', desc: 'Learn professional photography tips.', img: 'https://source.unsplash.com/400x250/?photography' },
+      { id: 'event5', title: 'Holiday Gala', date: '2025-12-20', desc: 'End-of-year celebration with music & food.', img: 'https://source.unsplash.com/400x250/?celebration,party' },
+      { id: 'event6', title: 'New Year Workshop', date: '2025-12-20', desc: 'Kickstart the new year with creative projects.', img: 'https://source.unsplash.com/400x250/?newyear,workshop' },
+      { id: 'event7', title: 'Tech Meetup', date: '2025-10-15', desc: 'Networking for tech enthusiasts.', img: 'https://source.unsplash.com/400x250/?meetup,tech' },
+      { id: 'event8', title: 'Digital Marketing Talk', date: '2025-11-21', desc: 'Learn latest strategies in marketing.', img: 'https://source.unsplash.com/400x250/?marketing,digital' },
+    ];
+
+    const eventContainer = document.getElementById('eventContainer');
+    const tabs = document.querySelectorAll('.tab');
+
+    function renderEvents(date) {
+      eventContainer.innerHTML = '';
+      const filtered = events.filter(e => e.date === date);
+      filtered.forEach((e, i) => {
+        const card = document.createElement('div');
+        card.className = `bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-500 opacity-0 translate-y-6`;
+        card.innerHTML = `
+          <img src="${e.img}" alt="${e.title}" class="w-full h-48 object-cover">
+          <div class="p-4 flex flex-col justify-between">
+            <h3 class="text-xl font-semibold mb-2">${e.title}</h3>
+            <p class="text-gray-400 mb-2">${new Date(e.date).toDateString()}</p>
+            <p class="text-gray-300 text-sm mb-4">${e.desc}</p>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" onclick="openModal('${e.title}')">Register</button>
+          </div>
+        `;
+        eventContainer.appendChild(card);
+        // Smooth staggered animation
+        setTimeout(() => card.classList.remove('opacity-0', 'translate-y-6'), i * 100);
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('bg-blue-600'));
+        tab.classList.add('bg-blue-600');
+        renderEvents(tab.dataset.date);
+      });
+    });
+
+    // Default tab selected
+    tabs[0].click();
+
+    // Modal functions
+    function openModal(title) {
+      document.getElementById('modalTitle').innerText = `Register for ${title}`;
+      const modal = document.getElementById('modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => modal.querySelector('div').classList.remove('scale-95'), 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.querySelector('div').classList.add('scale-95');
+      setTimeout(() => modal.classList.add('opacity-0', 'pointer-events-none'), 200);
+    }
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        const open = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+        document.querySelectorAll('.faq-answer').forEach(a => a.style.maxHeight = '0px');
+        if (!open) answer.style.maxHeight = answer.scrollHeight + 'px';
+      });
+    });
+  </script>
+</body>
+</html>
