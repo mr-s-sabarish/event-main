@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EVENT</title>
+    <meta name="description"
+        content="Professional event management services for weddings, corporate events, parties, and exhibitions. We design, plan, and execute unforgettable experiences." />
+    <meta name="keywords"
+        content="event management, wedding planner, corporate events, party planning, exhibition management, event organizer, conferences, celebrations" />
+
+    <!-- Font Awesome Cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Aos Cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+        integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind Css  -->
+    <link rel="stylesheet" href="../output.css" />
+
+    <!-- cahrt js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+        body {
+            font-family: "Josefin Sans", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hamburger animation */
+        .hamburger span {
+            display: block;
+            width: 1.5rem;
+            height: 0.125rem;
+            margin: 0.4rem auto;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: currentColor;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile menu slide + fade */
+        .mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+            /* enough for nav links */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll fade animation */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all .8s ease;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeUp .8s ease forwards;
+        }
+
+        /* Card hover zoom */
+        .service-card img {
+            transition: transform .6s ease;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Modal pop effect */
+        #serviceModal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s ease;
+        }
+
+        #serviceModal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #modalContent {
+            transform: scale(.9);
+            opacity: 0;
+            transition: all .4s ease;
+        }
+
+        #serviceModal.active #modalContent {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Tabs */
+        .tab-active {
+            background: white;
+            color: black;
+            font: bold;
+        }
+
+        .pop {
+            animation: popup 0.5s linear forwards;
+        }
+
+        @keyframes popup {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .popout {
+            animation: popout 0.4s linear backwards;
+        }
+
+        @keyframes popout {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-black text-white relative">
+
+    <!-- forms -->
+    <div hidden id="bookform"
+        class="fixed flex justify-center items-center bg-black/80 backdrop-blur-3xl z-100 px-4 h-screen w-full">
+        <form action="../404.html" method="get"
+            class="w-full max-w-xl relative mx-auto flex flex-col items-center justify-center text-sm text-white px-4 py-8 rounded-2xl border-2 border-gray-400/50"
+            data-aos="fade-up-left" data-aos-delay="200">
+            <div id="closex"
+                class="absolute top-5 right-5 text-white cursor-pointer text-xl font-bold transform hover:scale-95 transition-all duration-300 ease-in">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div>
+                <h1 class="text-xl md:text-4xl font-bold uppercase">
+                    Book
+                    <span class="">Now</span>
+                </h1>
+            </div>
+            <div class="w-full mt-5 space-y-4">
+                <div class="flex flex-col justify-center gap-3">
+                    <label class="font-medium">Full Name</label>
+                    <input type="text"
+                        class="h-full py-3 px-3 w-full outline-none bg-transparent text-gray-200 ring ring-slate-500 rounded-lg focus:ring-gray-300 transition-all placeholder:text-white/70"
+                        placeholder="Enter your full name" required />
+                </div>
+
+                <div class="flex flex-col justify-center gap-3">
+                    <label class="font-medium mt-4">Email Address</label>
+                    <input type="email"
+                        class="h-full py-3 px-3 w-full outline-none bg-transparent text-gray-200 ring ring-slate-500 rounded-lg focus:ring-gray-300 transition-all placeholder:text-white/70"
+                        placeholder="Enter your email address" required />
+                </div>
+
+                <div class="flex flex-col justify-center gap-3">
+                    <label class="font-medium">Message</label>
+                    <textarea rows="4"
+                        class="h-full py-3 px-3 w-full outline-none bg-transparent text-gray-200 ring ring-slate-500 rounded-lg focus:ring-gray-300 transition-all placeholder:text-white/70"
+                        placeholder="Enter your message" required></textarea>
+                </div>
+
+                <button class="px-6 bg-gray-600 text-white py-2.5 w-fit rounded-full mt-5 cursor-pointer" type="submit">
+                    Book Now
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Navbar -->
+    <header class="fixed top-0 z-[500] border-b border-slate-200/10 bg-white/5 backdrop-blur w-full mx-auto text-white">
+        <div class="flex items-center justify-between p-3">
+            <!-- Logo -->
+            <a class="" href="../index.html"><img class="h-10 object-cover" src="../assets/Logo1.png" alt="logo" /></a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-2 md:space-x-3 lg:space-x-5 text-sm font-medium">
+                <!-- Home with Dropdown -->
+                <div class="relative">
+                    <!-- Parent Button -->
+                    <button
+                        class="relative inline-block text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
+                        <a href="../index.html">Home</a>
+                        <i id="homeToggle" class="fa-solid fa-caret-down"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <ul id="homeMenu" class="absolute hidden bg-black shadow-lg mt-2 rounded w-40">
+                        <!-- <li>
+                <a
+                  href="./index.html"
+                  class="block px-4 py-2 hover:bg-gray-50 "
+                >
+                  Home 1
+                </a>
+              </li> -->
+
+                        <!-- Home 2 -->
+                        <li>
+                            <a href="../404.html" class="block px-4 py-2 text-white">
+                                Home 2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- About Us -->
+                <a href="../About/About.html"
+                    class="relative inline-block text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full">
+                    About Us
+                </a>
+
+                <!-- Services -->
+                <a href="../Service/Service.html"
+                    class="relative inline-block text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full">
+                    Services
+                </a>
+                <!-- Events -->
+                <a href="../Event/Event.html"
+                    class="relative inline-block text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full">
+                    Events
+                </a>
+                <!-- Contact -->
+                <a href="../Contact/Contact.html"
+                    class="relative inline-block text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full">
+                    Contact
+                </a>
+                <!-- Dashboard -->
+                <button id="book"
+                    class="relative inline-block text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
+                    Book Now
+                </button>
+            </nav>
+
+            <div class="flex text-sm gap-4 font-medium">
+                <!-- Profile -->
+                <div class="relative">
+                    <div>
+                        <button id="profileBtn" class="flex items-center gap-2 focus:outline-none cursor-pointer">
+                            <img src="../assets/img6.jpeg"
+                                class="w-10 h-10 rounded-full object-cover object-top border border-gray-700" />
+                            <span class="text-gray-300 hidden sm:block">Alex ▾</span>
+                        </button>
+                    </div>
+
+                    <div id="dropdownMenu" class="hidden absolute right-0 top-14 glass rounded-xl dropdown-enter">
+                        <div class="flex flex-col py-2">
+                            <a href="../index.html"
+                                class="px-4 py-2 w-full text-left text-sm text-red-400 hover:bg-gray-800 transition cursor-pointer">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hamburger -->
+                <button id="hamburger" class="hamburger cursor-pointer md:hidden focus:outline-none" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav id="mobileMenu" class="mobile-menu lg:hidden border-t border-slate-200/10 shadow-md">
+            <ul class="flex flex-col space-y-4 p-4 text-sm font-medium">
+                <!-- Home dropDown  -->
+                <div class="relative">
+                    <button class="flex items-center gap-1 w-full text-left  transition-colors lg:hidden">
+                        <a href="../index.html">Home</a>
+                        <i id="mobileToggle" class="fa-solid fa-caret-down"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <ul id="mobileLink" class="hidden bg-black mt-2 rounded w-full md:absolute">
+                        <!-- <li>
+                <a
+                  href="../404.html"
+                  class="block px-2 py-2 hover:bg-gray-50 "
+                >
+                  Home 1
+                </a>
+              </li> -->
+                        <li class=""></li>
+                        <li>
+                            <a href="../404.html" class="block px-2 py-2 ">
+                                Home 2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- About Us -->
+                <li>
+                    <a href="../About/About.html" class="nav-link block  transition-colors">About Us</a>
+                </li>
+                <!-- Services -->
+                <li>
+                    <a href="../Service/Service.html" class="nav-link block  transition-colors">Services</a>
+                </li>
+                <!-- Blogs -->
+                <li>
+                    <a href="../Event/Event.html" class="nav-link block  transition-colors">Events</a>
+                </li>
+                <!-- Contact -->
+                <li>
+                    <a href="../Contact/Contact.html" class="nav-link block  transition-colors">Contact</a>
+                </li>
+
+                <li>
+                    <button id="book" class="nav-link text-gray-500 block  transition-colors">
+                        Book Now
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Dropdown script  -->
+        <script>
+            const homeToggle = document.getElementById("homeToggle");
+            const homeMenu = document.getElementById("homeMenu");
+
+            homeToggle.addEventListener("click", () => {
+                homeMenu.classList.toggle("hidden");
+            });
+
+            const mobileToggle = document.getElementById("mobileToggle");
+            const mobileLink = document.getElementById("mobileLink");
+
+            // Home dropdown toggle (mobile only)
+            mobileToggle.addEventListener("click", () => {
+                mobileLink.classList.toggle("hidden");
+            });
+
+            // Optional: close menu if clicked outside
+            window.addEventListener("click", (e) => {
+                if (!homeToggle.contains(e.target) && !homeMenu.contains(e.target)) {
+                    homeMenu.classList.add("hidden");
+                }
+            });
+        </script>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-24 px-4 space-y-10">
+        <!-- Dashboard Stats -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 class="text-gray-400 mb-1">Total Events</h3>
+                <p class="text-3xl font-bold text-white">15</p>
+                <p class="text-sm text-gray-500 mt-2">+2 this month</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 class="text-gray-400 mb-1">Total Registrations</h3>
+                <p class="text-3xl font-bold text-white">524</p>
+                <p class="text-sm text-gray-500 mt-2">+38 this week</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 class="text-gray-400 mb-1">Upcoming Events</h3>
+                <p class="text-3xl font-bold text-white">6</p>
+                <p class="text-sm text-gray-500 mt-2">3 in next 10 days</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h3 class="text-gray-400 mb-1">Revenue</h3>
+                <p class="text-3xl font-bold text-green-400">$18,720</p>
+                <p class="text-sm text-gray-500 mt-2">+10% from last month</p>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Attendance Trend -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold mb-4 text-white">Attendance Trend</h3>
+                <canvas id="attendanceChart"></canvas>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold mb-4 text-white">Revenue Growth</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Recent Events Table -->
+        <section>
+            <h3 class="text-2xl font-bold mb-4 text-white">Recent Events</h3>
+            <div class="overflow-x-auto rounded-lg shadow-lg">
+                <table class="w-full border-collapse text-left text-gray-300">
+                    <thead class="bg-gray-800 text-gray-400 text-sm uppercase">
+                        <tr>
+                            <th class="px-4 py-3">Event Name</th>
+                            <th class="px-4 py-3">Date</th>
+                            <th class="px-4 py-3">Location</th>
+                            <th class="px-4 py-3">Status</th>
+                            <th class="px-4 py-3 text-center">Attendees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-800 border-t border-gray-700 transition">
+                            <td class="px-4 py-3">Tech Summit 2025</td>
+                            <td class="px-4 py-3">Oct 15, 2025</td>
+                            <td class="px-4 py-3">Innovation Park</td>
+                            <td class="px-4 py-3 text-green-400">Active</td>
+                            <td class="px-4 py-3 text-center">120</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800 border-t border-gray-700 transition">
+                            <td class="px-4 py-3">Art Workshop</td>
+                            <td class="px-4 py-3">Nov 21, 2025</td>
+                            <td class="px-4 py-3">Art Center</td>
+                            <td class="px-4 py-3 text-yellow-400">Upcoming</td>
+                            <td class="px-4 py-3 text-center">85</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800 border-t border-gray-700 transition">
+                            <td class="px-4 py-3">Music Festival</td>
+                            <td class="px-4 py-3">Dec 20, 2025</td>
+                            <td class="px-4 py-3">City Stadium</td>
+                            <td class="px-4 py-3 text-green-400">Active</td>
+                            <td class="px-4 py-3 text-center">200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ChartJS Scripts -->
+    <script>
+        // Attendance Chart
+        const ctx1 = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [{
+                    label: 'Attendees',
+                    data: [80, 120, 150, 170, 200, 250, 300, 280],
+                    borderColor: '#3B82F6',
+                    backgroundColor: 'rgba(59,130,246,0.3)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 5,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                plugins: { legend: { labels: { color: '#ddd' } } },
+                scales: {
+                    x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
+                    y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+                }
+            }
+        });
+
+        // Revenue Chart
+        const ctx2 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: [3200, 4500, 3800, 5200, 6000, 7500, 8200, 9000],
+                    backgroundColor: '#10B981',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                plugins: { legend: { labels: { color: '#ddd' } } },
+                scales: {
+                    x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
+                    y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+                }
+            }
+        });
+    </script>
+
+    <!-- Aos Animation  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+        integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Book Now Js -->
+    <script>
+        const book = document.querySelectorAll("#book");
+        const bookform = document.querySelector("#bookform");
+        const closex = document.querySelector("#closex");
+
+        book.forEach((el) => {
+            el.addEventListener("click", function () {
+                bookform.hidden = false;
+                bookform.querySelector("form").classList.add("pop");
+            });
+        });
+
+        closex.addEventListener("click", function () {
+            bookform.querySelector("form").classList.remove("pop");
+            bookform.querySelector("form").classList.add("popout");
+
+            // Wait for animation to finish before hiding
+            bookform.addEventListener(
+                "animationend",
+                () => {
+                    if (bookform.querySelector("form").classList.contains("popout")) {
+                        bookform.hidden = true;
+                    }
+                    bookform.querySelector("form").classList.remove("popout");
+                },
+                { once: true }
+            );
+        });
+    </script>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            // delay: 200, // default delay for all elements
+            once: false,
+            mirror: true,
+        });
+    </script>
+
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const links = mobileMenu.querySelectorAll(".nav-link");
+
+        // Profile dropdown
+        const profileBtn = document.getElementById("profileBtn");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+        profileBtn.addEventListener("click", () =>
+            dropdownMenu.classList.toggle("hidden")
+        );
+        document.addEventListener("click", (e) => {
+            if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target))
+                dropdownMenu.classList.add("hidden");
+        });
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            mobileMenu.classList.toggle("open");
+        });
+
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                mobileMenu.classList.remove("open");
+            });
+        });
+    </script>
+</body>
+
+</html>

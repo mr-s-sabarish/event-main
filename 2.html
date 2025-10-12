@@ -1,15 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Section with Filters & Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./output.css">
-</head>
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-<body>
+      .fade-in {
+        animation: fadeIn 0.7s ease forwards;
+      }
+    </style>
+  </head>
 
-</body>
+  <body class="bg-gray-950 text-gray-100 font-sans">
+    <!-- back image -->
+    <!-- <div class="absolute inset-0 z-[-1] overflow-hidden">
+      <img
+        class="w-full h-full object-cover blur-3xl brightness-30"
+        src="../assets/ser-bg-1.jpeg"
+        alt="bg-image"
+      />
+    </div> -->
 
+    <!-- Event Section -->
+    <section class="py-20 px-6 md:px-12 lg:px-24 relative">
+      <!-- Background -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950 opacity-90"
+      ></div>
+
+      <!-- Heading -->
+      <div class="relative text-center mb-14">
+        <h2
+          class="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent"
+        >
+          Explore Our Events
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto mt-4">
+          Browse concerts, conferences, and workshops. Search or filter to find
+          what excites you.
+        </p>
+      </div>
+
+      <!-- Filters & Search -->
+      <div
+        class="relative flex flex-col md:flex-row items-center justify-between mb-12 gap-4"
+      >
+        <!-- Tabs -->
+        <div class="flex space-x-3">
+          <button
+            class="tabBtn active px-6 py-2 rounded-full font-semibold transition focus:outline-none bg-indigo-600 text-white shadow-lg shadow-indigo-600/40"
+            data-tab="all"
+          >
+            All
+          </button>
+          <button
+            class="tabBtn px-6 py-2 rounded-full font-semibold transition focus:outline-none bg-gray-800 hover:bg-indigo-600 hover:text-white"
+            data-tab="concerts"
+          >
+            Concerts
+          </button>
+          <button
+            class="tabBtn px-6 py-2 rounded-full font-semibold transition focus:outline-none bg-gray-800 hover:bg-indigo-600 hover:text-white"
+            data-tab="conferences"
+          >
+            Conferences
+          </button>
+          <button
+            class="tabBtn px-6 py-2 rounded-full font-semibold transition focus:outline-none bg-gray-800 hover:bg-indigo-600 hover:text-white"
+            data-tab="workshops"
+          >
+            Workshops
+          </button>
+        </div>
+
+        <!-- Search -->
+        <div class="w-full md:w-1/3">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search events..."
+            class="w-full px-5 py-2 rounded-full bg-gray-800 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+      </div>
+
+      <!-- Event Grid -->
+      <div
+        id="eventGrid"
+        class="relative grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+      ></div>
+    </section>
+
+    <!-- Popup Modal -->
+    <div
+      id="modal"
+      class="hidden fixed inset-0 items-center justify-center bg-black/70 backdrop-blur-sm z-50"
+    >
+      <div
+        class="bg-gray-900 p-8 rounded-3xl shadow-2xl transform scale-75 opacity-0 transition-all duration-500 w-96"
+      >
+        <h3 class="text-3xl font-bold text-white mb-4" id="modalTitle">
+          Event Registration
+        </h3>
+        <p class="text-gray-400 mb-6" id="modalDesc">Event details here.</p>
+        <input
+          type="text"
+          placeholder="Your Name"
+          class="w-full mb-3 px-4 py-3 rounded-xl bg-gray-800 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          class="w-full mb-3 px-4 py-3 rounded-xl bg-gray-800 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <button
+          class="w-full py-3 mt-2 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-semibold hover:opacity-90 transition"
+        >
+          Confirm
+        </button>
+        <button
+          id="closeModal"
+          class="w-full py-2 mt-4 rounded-xl bg-gray-700 text-white font-medium hover:bg-gray-600 transition"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Event Data
+      const events = {
+        concerts: [
+          {
+            title: "Live Music Festival",
+            date: "Oct 15, 2025",
+            img: "https://source.unsplash.com/600x400/?concert",
+            desc: "An electrifying night with top performers.",
+            modal: "Book your tickets for Live Music Festival!",
+          },
+          {
+            title: "Rock Legends Tour",
+            date: "Nov 20, 2025",
+            img: "https://source.unsplash.com/600x400/?rock",
+            desc: "Feel the power of legendary rock bands.",
+            modal: "Reserve your Rock Legends Tour seat.",
+          },
+          {
+            title: "Jazz Evening",
+            date: "Dec 8, 2025",
+            img: "https://source.unsplash.com/600x400/?jazz",
+            desc: "Smooth jazz under starlit skies.",
+            modal: "Register for Jazz Evening night.",
+          },
+        ],
+        conferences: [
+          {
+            title: "Tech Innovators Summit",
+            date: "Nov 3, 2025",
+            img: "https://source.unsplash.com/600x400/?conference",
+            desc: "Network with innovators & leaders.",
+            modal: "Join Tech Innovators Summit.",
+          },
+          {
+            title: "Future of AI Forum",
+            date: "Dec 1, 2025",
+            img: "https://source.unsplash.com/600x400/?ai",
+            desc: "The future of AI in one place.",
+            modal: "Register for Future of AI Forum.",
+          },
+          {
+            title: "Startup Pitch Day",
+            date: "Jan 10, 2026",
+            img: "https://source.unsplash.com/600x400/?startup",
+            desc: "Pitch your ideas to investors.",
+            modal: "Apply to Startup Pitch Day.",
+          },
+        ],
+        workshops: [
+          {
+            title: "Creative Art Workshop",
+            date: "Dec 12, 2025",
+            img: "https://source.unsplash.com/600x400/?art",
+            desc: "Hands-on creative journey.",
+            modal: "Join Creative Art Workshop.",
+          },
+          {
+            title: "Photography Masterclass",
+            date: "Jan 5, 2026",
+            img: "https://source.unsplash.com/600x400/?photography",
+            desc: "Learn photography like a pro.",
+            modal: "Register for Photography Masterclass.",
+          },
+          {
+            title: "Culinary Skills Lab",
+            date: "Feb 14, 2026",
+            img: "https://source.unsplash.com/600x400/?cooking",
+            desc: "Cook like a master chef.",
+            modal: "Sign up for Culinary Skills Lab.",
+          },
+        ],
+      };
+
+      // Merge all events for "All"
+      const allEvents = [
+        ...events.concerts,
+        ...events.conferences,
+        ...events.workshops,
+      ];
+
+      const eventGrid = document.getElementById("eventGrid");
+      const modal = document.getElementById("modal");
+      const modalBox = modal.querySelector("div");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalDesc = document.getElementById("modalDesc");
+      const closeBtn = document.getElementById("closeModal");
+      const searchInput = document.getElementById("searchInput");
+
+      let currentTab = "all";
+
+      // Render events
+      function renderEvents(category, searchTerm = "") {
+        eventGrid.innerHTML = "";
+        let list = category === "all" ? allEvents : events[category];
+        if (searchTerm) {
+          list = list.filter(
+            (e) =>
+              e.title.toLowerCase().includes(searchTerm) ||
+              e.desc.toLowerCase().includes(searchTerm)
+          );
+        }
+        list.forEach((e) => {
+          const card = document.createElement("div");
+          card.className =
+            "fade-in bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-lg border border-white/10 rounded-3xl shadow-xl p-6 transform hover:scale-105 hover:shadow-indigo-500/30 transition-all duration-500";
+          card.innerHTML = `
+          <img src="${e.img}" class="rounded-2xl mb-4 w-full h-56 object-cover">
+          <span class="text-sm font-medium text-indigo-400">${e.date}</span>
+          <h3 class="text-2xl font-bold text-white mt-2">${e.title}</h3>
+          <p class="text-gray-300 mt-2 mb-4">${e.desc}</p>
+          <button class="openModal w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-600 hover:opacity-90 transition font-semibold shadow-lg shadow-indigo-600/40" data-title="${e.title}" data-desc="${e.modal}">Register</button>
+        `;
+          eventGrid.appendChild(card);
+        });
+        attachModalHandlers();
+      }
+
+      // Modal handlers
+      function attachModalHandlers() {
+        document.querySelectorAll(".openModal").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            modalTitle.innerText = btn.dataset.title;
+            modalDesc.innerText = btn.dataset.desc;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            setTimeout(() => {
+              modalBox.classList.remove("scale-75", "opacity-0");
+              modalBox.classList.add("scale-100", "opacity-100");
+            }, 50);
+          });
+        });
+      }
+
+      // Close modal
+      closeBtn.addEventListener("click", () => {
+        modalBox.classList.add("scale-75", "opacity-0");
+        modalBox.classList.remove("scale-100", "opacity-100");
+
+        setTimeout(() => {
+          modal.classList.remove("flex");
+          modal.classList.add("hidden");
+        }, 400);
+      });
+
+      // Tabs
+      const tabBtns = document.querySelectorAll(".tabBtn");
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach((b) =>
+            b.classList.remove(
+              "active",
+              "bg-indigo-600",
+              "text-white",
+              "shadow-lg",
+              "shadow-indigo-600/40"
+            )
+          );
+          btn.classList.add(
+            "active",
+            "bg-indigo-600",
+            "text-white",
+            "shadow-lg",
+            "shadow-indigo-600/40"
+          );
+          currentTab = btn.dataset.tab;
+          renderEvents(currentTab, searchInput.value.toLowerCase());
+        });
+      });
+
+      // Search
+      searchInput.addEventListener("input", (e) => {
+        renderEvents(currentTab, e.target.value.toLowerCase());
+      });
+
+      // Default
+      renderEvents("all");
+    </script>
+  </body>
 </html>
